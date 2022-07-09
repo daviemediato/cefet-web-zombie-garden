@@ -58,7 +58,7 @@ app.use('/db/reset', async (req, res) => {
     req.flash('success', 'Banco de dados restaurado ao estado original.')
 
   } catch (error) {
-    req.flash('error', error.friendlyMessage ?? error.message)
+    req.flash('error', error.message)
 
   } finally {
     res.redirect('back')
@@ -90,7 +90,7 @@ if (app.get('env') === 'development') {
 app.use((err, req, res, next) => {
   res.status(err.status || 500)
   res.render('error', {
-    message: err.friendlyMessage ?? err.message,
+    message: err.message,
     error: {}
   })
 })
